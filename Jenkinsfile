@@ -38,5 +38,19 @@ pipeline {
             }
         }
     }
+	post {
+	
+	    failure {
+		    mail to: 'rashmiranjanpradhan.4@gmail.com',
+			subject: "Pipeline Status : ${currentBuild.currentResult}",
+			body : "Something went wrong with build. Please click ${env.BUILD_URL}"
+		}
+		
+		success {
+		    mail to: 'rashmiranjanpradhan.4@gmail.com',
+			subject: "Pipeline Status : ${currentBuild.currentResult}",
+			body : "Build passed sucessfully. Please click ${env.BUILD_URL}"
+		}		
+	}
+	
 }
-
